@@ -10,7 +10,7 @@ class Calculator {
         this.operation = undefined;
     }
     delete() {
-
+        this.currOp = this.currOp.toString().slice(0,-1);
     }
     appendNum(num) {
         if(num === "." && this.currOp.includes('.')){return}
@@ -26,13 +26,57 @@ class Calculator {
         this.currOp = '';
     }
     operate() {
-
+        let result;
+        const prev = parseFloat(this.prevOp);
+        const curr = parseFloat(this.currOp);
+        if(isNaN(prev) || isNaN(curr)) {return}
+        switch (this.operation) {
+            case '+':
+                result = prev + curr;
+                break;
+            case '-':
+                result = prev - curr;
+                break;
+            case '*': 
+                result = prev * curr;
+                break;
+            case '÷':
+                result = Math.round(prev/curr*100)/100;
+                break;
+            default:
+                return;
+        }
+        this.currOp = result;
+        this.operation = undefined;
+        this.prevOp = '';
+    }
+    displayNum(num) {
+        const stringNum = num.toString();
+        const intDigit = parseFloat(stringNum.split('.')[0]);
+        const decDigit = stringNum.split('.')[1];
+        let intDisplay
+        if(isNaN(intDigit)){
+            intDisplay = '';
+        } else {
+            intDisplay = intDigit.toLocaleString('en', {maximumFractionDigits: 0});
+        }
+        if(decDigit != null) {
+            return `${intDisplay}.${decDigit}`
+        } else {
+            return intDisplay;
+        }
+        return num;
     }
     updateDisplay() {
-        this.currOpText.innerText = this.currOp;
-        this.prevOpText.innerText = this.prevOp;
+        this.currOpText.innerText = this.displayNum(this.currOp);
+        if(this.operation != null){
+        this.prevOpText.innerText = `${this.displayNum(this.prevOp)} ${this.operation}`;
+        } else {
+            this.prevOpText.innerText = '';
+        }
     }
 }
+
 const numButtons = document.querySelectorAll('[data-num]');
 const opButtons = document.querySelectorAll('[data-operation]');
 const equalsButton = document.querySelector('[data-equals]');
@@ -61,33 +105,13 @@ equalsButton.addEventListener('click', button => {
     calculator.operate();
     calculator.updateDisplay();
 })
-/*function add(a,b) {
-    return a+b;
-}
 
-function subtract(a,b) {
-    return a-b;
-}
+allClearButton.addEventListener('click', button => {
+    calculator.clear();
+    calculator.updateDisplay();
+})
 
-function multiply(a,b) {
-    return a*b;
-}
-
-function divide(a,b) {
-    return Math.round(a/b*100)/100;
-}
-
-function operate(num1, operand, num2) {
-    if(operand == '+') {
-        add(num1, num2);
-    }
-    if(operand == '-') {
-        subtract(num1, num2);
-    }
-    if(operand == '*') {
-        multiply(num1,  num2);
-    }
-    if(operand == '/') {
-        divide(num1, num2);
-    }
-}*/
+delButton.addEventListener('click', button => {
+    calculator.delete();
+    calculator.updateDisplay();
+})

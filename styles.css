@@ -6,9 +6,21 @@
     font-weight: normal;
 }
 
+header {
+    display: flex;
+    justify-content: center;
+    padding: 40px 0px;
+    font-size: 30px;
+    background-color: #3C2D3D80;
+    color: white;
+}
+
 body {
     padding: 0;
     margin: 0;
+    min-height: 85vh;
+    display: flex;
+    flex-direction: column;
     background: linear-gradient(to right, #BF62C8, #8C6A8F);
 }
 
@@ -16,7 +28,7 @@ body {
     display: grid;
     justify-content: center;
     align-content: center;
-    min-height: 100vh;
+    min-height: 85vh;
     grid-template-columns: repeat(4, 100px);
     grid-template-rows: minmax(120px, auto) repeat(5, 100px);
 }
@@ -56,4 +68,12 @@ body {
 .currentop {
     color: #FFFFFFFF;
     font-size: 2rem;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-top: auto;
+    padding: 25px;
 }
