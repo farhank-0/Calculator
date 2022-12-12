@@ -1,0 +1,59 @@
+@import url(https://fonts.googleapis.com/css2?family=Roboto);
+
+* {
+    box-sizing: border-box;
+    font-family: Roboto, sans-serif;
+    font-weight: normal;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background: linear-gradient(to right, #BF62C8, #8C6A8F);
+}
+
+.grid {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    min-height: 100vh;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: minmax(120px, auto) repeat(5, 100px);
+}
+
+.grid button {
+    cursor: pointer;
+    font-size: 2rem;
+    border: 1px solid #3D0342;
+    background-color: #B98CBD75;
+}
+
+.grid button:hover {
+    background-color: #BF62C875;
+}
+
+.span-two {
+    grid-column: span 2;
+}
+
+.output {
+    grid-column: 1/-1;
+    background-color: #3C2D3D80;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-around;
+    padding: 10px;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+
+.previousop {
+    color: #FFFFFFCC;
+    font-size: 1.5rem;
+}
+
+.currentop {
+    color: #FFFFFFFF;
+    font-size: 2rem;
+}
