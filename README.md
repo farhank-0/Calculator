@@ -13,4 +13,3 @@ fundamental techniques pertaining to front end web development in HTML, CSS and 
 - Learned how to convert from number to string to display text on calculator output without inaccuracies in splitting large numbers with commas or multiple decimal places
 - Applied knowledge of object type to convert from string to number to perform simple calculations within operate function
 - Applied knowledge of loops and built in forEach method to add an event listener to all buttons for a click event
-- Applied 
